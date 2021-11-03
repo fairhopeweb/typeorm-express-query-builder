@@ -1,9 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderOption = void 0;
-const filter_option_1 = require("./filter-option");
-class OrderOption extends filter_option_1.FilterOption {
-    setOption(query) {
+class OrderOption {
+    setOption(query, profile) {
+        if (!this.isAuthorized(profile)) {
+            delete query.source['order'];
+            return;
+        }
         if (!query.source['order']) {
             return;
         }
@@ -24,6 +27,12 @@ class OrderOption extends filter_option_1.FilterOption {
         else {
             throw new Error(`No order set for <${field}>. Prefix with one of these: [+, -]`);
         }
+    }
+    isAuthorized(profile) {
+        if (profile.options.ordering.status === 'disabled') {
+            return false;
+        }
+        return true;
     }
 }
 exports.OrderOption = OrderOption;

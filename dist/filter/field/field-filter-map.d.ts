@@ -1,4 +1,4 @@
-import { LookupFilter } from "./lookup.enum";
+import { LookupFilter } from './lookup.enum';
 import { FindOptionsUtils } from 'typeorm';
 interface BuildQueryFunction {
     build: (prop: string, value: string) => Record<string, FindOptionsUtils>;

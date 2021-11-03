@@ -16,7 +16,7 @@ class FilterFactory {
                 prop,
                 lookup,
                 value: query.value,
-                notOperator
+                notOperator,
             });
         }
     }
